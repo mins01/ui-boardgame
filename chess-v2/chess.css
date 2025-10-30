@@ -12,12 +12,16 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 5% 90% 5%;
-    grid-template-rows: 5% 90% 5%;
+    grid-template-columns: 2fr 0.5fr 8fr 0.5fr 2fr;
+    grid-template-rows: 2fr 0.5fr 8fr 0.5fr 2fr;
+    grid-template-areas:
+    ".  .  ot  .  ."
+    ".  .  lt  .  ."
+    "ol nl bc nr or"
+    ".  .  lb  .  ."
+    ".  .  ob  .  .";
 }
-.chess .chess-body .grid-area{
-    position: relative;
-}
+
 .chess .chess-body .grid{
     width:100%;
     height: 100%;
@@ -27,7 +31,9 @@
 }
 
 .chess .chess-body .grid > div{
-
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
 }
 
 
@@ -45,6 +51,11 @@
     position: absolute;
     inset: 0;
 }
+/* board-grids */
+.chess .chess-body .board-grids{
+    position: relative;
+    grid-area: bc;
+}
 
 /* lettering */
 .chess .chess-body .lettering{
@@ -52,6 +63,15 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+}
+.chess .chess-body .lettering-top{
+    grid-area:lt;
+}
+.chess .chess-body .lettering-bottom{
+    grid-area:lb;
 }
 
 /* numbering */
@@ -60,11 +80,25 @@
     height: 100%;
     display: grid;
     grid-template-rows: repeat(8, 1fr);
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
 }
 .chess .chess-body :where( .lettering, .numbering) > div{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+    
+}
+.chess .chess-body .numbering-left{
+    grid-area:nl;
+}
+.chess .chess-body .numbering-right{
+    grid-area:nr;
 }
 
 
@@ -235,6 +269,7 @@
     justify-content: end;
     align-items: end;
     font-size: 0.8em;
+    color: #999;
 }
 .chess .numbered > div:nth-child(1)::before { content: "1"; }
 .chess .numbered > div:nth-child(2)::before { content: "2"; }
