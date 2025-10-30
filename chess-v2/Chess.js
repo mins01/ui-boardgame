@@ -6,15 +6,30 @@ class Chess{
         this.board = board;
         this.squares = board.querySelectorAll('.square-grid > div'); // 64개
         this.symbols = board.querySelectorAll('.symbol-grid > .symbol'); // 64개
-        this.outboxes = board.querySelectorAll('.symbol-grid > .outbox'); // 64개
-        this.addEventListenerForSquares();
-        this.addEventListenerForSymbols();
-        this.addEventListenerForOutboxes();
+        this.outbox1 =  board.querySelector('.outbox-1');
+        this.outbox2 =  board.querySelector('.outbox-2');
+        this.addEventListener();
+
     }
-    addEventListenerForSquares(){
+    addEventListener(){
         this.squares.forEach((square,idx) => {
             square.addEventListener('click',()=>{
                 this.setSelectedSymbolOrder(idx+1);
+            })
+        });
+        this.symbols.forEach((symbol,idx) => {
+            symbol.addEventListener('click',()=>{
+                this.selectSymbol(symbol)
+            })
+        });
+        this.outbox1.querySelectorAll(':scope > *').forEach((d,idx)=>{
+            d.addEventListener('click',()=>{
+                this.setSelectedSymbolOrder('out1-'+(idx+1));
+            })
+        });
+        this.outbox2.querySelectorAll(':scope > *').forEach((d,idx)=>{
+            d.addEventListener('click',()=>{
+                this.setSelectedSymbolOrder('out2-'+(idx+1));
             })
         });
     }
@@ -24,25 +39,13 @@ class Chess{
             this.selectSymbol(null)
         }
     }
-    addEventListenerForOutboxes(){
-        this.outboxes.forEach((outbox,idx) => {
-            outbox.addEventListener('click',()=>{
-                this.setSelectedSymbolOrder(outbox.dataset.order);
-            })
-        });
-    }
+    
 
-    addEventListenerForSymbols(){
-        this.symbols.forEach((symbol,idx) => {
-            symbol.addEventListener('click',()=>{
-                this.selectSymbol(symbol)
-            })
-        });
-    }
     selectSymbol(symbol){
         this.symbols.forEach((symbol)=>{
             symbol.classList.remove('active');
         })
+        this.board.classList.remove('active-symbol')
         if(!symbol){
             this.selectedSymbol = null;
             return 
@@ -53,5 +56,6 @@ class Chess{
         }
         this.selectedSymbol = symbol;
         symbol.classList.add('active');
+        this.board.classList.add('active-symbol')
     }
 }

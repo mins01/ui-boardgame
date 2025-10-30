@@ -5,7 +5,10 @@
     --board-color-wihte:#eee;
     --board-color-black:#abc;
 
-    aspect-ratio: 1/1;
+    /* aspect-ratio: 1/1; */
+    aspect-ratio: 13/9;
+
+    user-select: none;
 }
 
 .chess .chess-body{
@@ -13,14 +16,48 @@
     height: 100%;
     display: grid;
     grid-template-columns: 2fr 0.5fr 8fr 0.5fr 2fr;
-    grid-template-rows: 2fr 0.5fr 8fr 0.5fr 2fr;
+    grid-template-rows: 0.5fr 8fr 0.5fr;
     grid-template-areas:
-    ".  .  ot  .  ."
-    ".  .  lt  .  ."
-    "ol nl bc nr or"
-    ".  .  lb  .  ."
-    ".  .  ob  .  .";
+    
+    ".  .  l1  .  ."
+    "o1 n1 bc n2 o2"
+    ".  .  l2  .  ."
+    
+    ;
 }
+
+/* 세로형 */
+@media (orientation: landscape) {
+    .boardgame.chess{
+        aspect-ratio: 13/9;
+        width: auto;
+        height: auto;
+        max-height: 100vh;
+    }    
+}
+@media (orientation: portrait){
+
+    .boardgame.chess{
+        aspect-ratio: 9/13;
+        width: auto;
+        max-width: 100vw;
+        height: auto;
+        max-height: 100vh;
+    }
+
+    .chess .chess-body{
+        grid-template-columns: 0.5fr 8fr 0.5fr;
+        grid-template-rows: 2fr 0.5fr 8fr 0.5fr 2fr;
+        grid-template-areas:
+        ".  o1  ."
+        ".  l1  ."
+        "n1 bc n2"
+        ".  l2  ."
+        ".  o2  ."
+        ;
+    }
+}
+
 
 .chess .chess-body .grid{
     width:100%;
@@ -68,10 +105,10 @@
     min-height: 0;
 }
 .chess .chess-body .lettering-top{
-    grid-area:lt;
+    grid-area:l1;
 }
 .chess .chess-body .lettering-bottom{
-    grid-area:lb;
+    grid-area:l2;
 }
 
 /* numbering */
@@ -95,17 +132,51 @@
     
 }
 .chess .chess-body .numbering-left{
-    grid-area:nl;
+    grid-area:n1;
 }
 .chess .chess-body .numbering-right{
-    grid-area:nr;
+    grid-area:n2;
 }
 
 
+/* outbox */
+.chess .chess-body .outbox{
+    background-color: #ccc;
+    width:100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+}
+.chess .chess-body .outbox-1{
+    grid-area: o1;
+}
+.chess .chess-body .outbox-2{
+    grid-area: o2;
+}
+.chess .chess-body .outbox > div{
+    background-color: var(--board-color-black);
+}
 
-
-
-
+/* 가로형 */
+@media (orientation: landscape) {
+    .chess .chess-body .outbox > div:where(:nth-child(4n+1),:nth-child(4n+4)){
+        background-color: var(--board-color-wihte);
+    }
+}
+/* 세로형 */
+@media (orientation: portrait){
+    .chess .chess-body .outbox{
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(8, 1fr);
+    }
+    .chess .chess-body .outbox > div:where(:nth-child(16n+1),:nth-child(16n+3),:nth-child(16n+5),:nth-child(16n+7),:nth-child(16n+10),:nth-child(16n+12),:nth-child(16n+14),:nth-child(16n+16)){
+        background-color: var(--board-color-wihte);
+    }
+}
 
 
 
@@ -123,18 +194,18 @@
     background: var(--bg-img) no-repeat center center;
     background-size: contain;
 }
-.chess .symbol-content[data-symbol="bd"]{ --bg-img:url(symbols/Chess_bdt45.svg);}
-.chess .symbol-content[data-symbol="bl"]{ --bg-img:url(symbols/Chess_blt45.svg);}
-.chess .symbol-content[data-symbol="kd"]{ --bg-img:url(symbols/Chess_kdt45.svg);}
-.chess .symbol-content[data-symbol="kl"]{ --bg-img:url(symbols/Chess_klt45.svg);}
-.chess .symbol-content[data-symbol="nd"]{ --bg-img:url(symbols/Chess_ndt45.svg);}
-.chess .symbol-content[data-symbol="nl"]{ --bg-img:url(symbols/Chess_nlt45.svg);}
-.chess .symbol-content[data-symbol="pd"]{ --bg-img:url(symbols/Chess_pdt45.svg);}
-.chess .symbol-content[data-symbol="pl"]{ --bg-img:url(symbols/Chess_plt45.svg);}
-.chess .symbol-content[data-symbol="qd"]{ --bg-img:url(symbols/Chess_qdt45.svg);}
-.chess .symbol-content[data-symbol="ql"]{ --bg-img:url(symbols/Chess_qlt45.svg);}
-.chess .symbol-content[data-symbol="rd"]{ --bg-img:url(symbols/Chess_rdt45.svg);}
-.chess .symbol-content[data-symbol="rl"]{ --bg-img:url(symbols/Chess_rlt45.svg);}
+.chess .symbol[data-symbol="bd"] > .symbol-content{ --bg-img:url(symbols/Chess_bdt45.svg);}
+.chess .symbol[data-symbol="bl"] > .symbol-content{ --bg-img:url(symbols/Chess_blt45.svg);}
+.chess .symbol[data-symbol="kd"] > .symbol-content{ --bg-img:url(symbols/Chess_kdt45.svg);}
+.chess .symbol[data-symbol="kl"] > .symbol-content{ --bg-img:url(symbols/Chess_klt45.svg);}
+.chess .symbol[data-symbol="nd"] > .symbol-content{ --bg-img:url(symbols/Chess_ndt45.svg);}
+.chess .symbol[data-symbol="nl"] > .symbol-content{ --bg-img:url(symbols/Chess_nlt45.svg);}
+.chess .symbol[data-symbol="pd"] > .symbol-content{ --bg-img:url(symbols/Chess_pdt45.svg);}
+.chess .symbol[data-symbol="pl"] > .symbol-content{ --bg-img:url(symbols/Chess_plt45.svg);}
+.chess .symbol[data-symbol="qd"] > .symbol-content{ --bg-img:url(symbols/Chess_qdt45.svg);}
+.chess .symbol[data-symbol="ql"] > .symbol-content{ --bg-img:url(symbols/Chess_qlt45.svg);}
+.chess .symbol[data-symbol="rd"] > .symbol-content{ --bg-img:url(symbols/Chess_rdt45.svg);}
+.chess .symbol[data-symbol="rl"] > .symbol-content{ --bg-img:url(symbols/Chess_rlt45.svg);}
 
 
 /* outbox */
@@ -260,6 +331,77 @@
 .chess .symbol-grid > *[data-order="63"] { --x: 8; --y: 7; }
 .chess .symbol-grid > *[data-order="64"] { --x: 8; --y: 8; }
 
+
+
+.chess .symbol-grid > *[data-order="out1-1"] { --x: 1; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-2"] { --x: 1; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-3"] { --x: 2; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-4"] { --x: 2; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-5"] { --x: 3; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-6"] { --x: 3; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-7"] { --x: 4; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-8"] { --x: 4; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-9"] { --x: 5; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-10"] { --x: 5; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-11"] { --x: 6; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-12"] { --x: 6; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-13"] { --x: 7; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-14"] { --x: 7; --y: -0.5; }
+.chess .symbol-grid > *[data-order="out1-15"] { --x: 8; --y: -1.5; }
+.chess .symbol-grid > *[data-order="out1-16"] { --x: 8; --y: -0.5; }
+
+.chess .symbol-grid > *[data-order="out2-1"] { --x: 1; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-2"] { --x: 1; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-3"] { --x: 2; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-4"] { --x: 2; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-5"] { --x: 3; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-6"] { --x: 3; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-7"] { --x: 4; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-8"] { --x: 4; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-9"] { --x: 5; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-10"] { --x: 5; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-11"] { --x: 6; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-12"] { --x: 6; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-13"] { --x: 7; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-14"] { --x: 7; --y: 10.5; }
+.chess .symbol-grid > *[data-order="out2-15"] { --x: 8; --y: 9.5; }
+.chess .symbol-grid > *[data-order="out2-16"] { --x: 8; --y: 10.5; }
+
+@media (orientation: portrait){
+    .chess .symbol-grid > *[data-order="out1-1"] { --x: -1.5; --y: 1; }
+    .chess .symbol-grid > *[data-order="out1-2"] { --x: -1.5; --y: 2; }
+    .chess .symbol-grid > *[data-order="out1-3"] { --x: -1.5; --y: 3; }
+    .chess .symbol-grid > *[data-order="out1-4"] { --x: -1.5; --y: 4; }
+    .chess .symbol-grid > *[data-order="out1-5"] { --x: -1.5; --y: 5; }
+    .chess .symbol-grid > *[data-order="out1-6"] { --x: -1.5; --y: 6; }
+    .chess .symbol-grid > *[data-order="out1-7"] { --x: -1.5; --y: 7; }
+    .chess .symbol-grid > *[data-order="out1-8"] { --x: -1.5; --y: 8; }
+    .chess .symbol-grid > *[data-order="out1-9"] { --x: -0.5; --y: 1; }
+    .chess .symbol-grid > *[data-order="out1-10"] { --x: -0.5; --y: 2; }
+    .chess .symbol-grid > *[data-order="out1-11"] { --x: -0.5; --y: 3; }
+    .chess .symbol-grid > *[data-order="out1-12"] { --x: -0.5; --y: 4; }
+    .chess .symbol-grid > *[data-order="out1-13"] { --x: -0.5; --y: 5; }
+    .chess .symbol-grid > *[data-order="out1-14"] { --x: -0.5; --y: 6; }
+    .chess .symbol-grid > *[data-order="out1-15"] { --x: -0.5; --y: 7; }
+    .chess .symbol-grid > *[data-order="out1-16"] { --x: -0.5; --y: 8; }
+
+    .chess .symbol-grid > *[data-order="out2-1"] { --x: 9.5; --y: 1; }
+    .chess .symbol-grid > *[data-order="out2-2"] { --x: 9.5; --y: 2; }
+    .chess .symbol-grid > *[data-order="out2-3"] { --x: 9.5; --y: 3; }
+    .chess .symbol-grid > *[data-order="out2-4"] { --x: 9.5; --y: 4; }
+    .chess .symbol-grid > *[data-order="out2-5"] { --x: 9.5; --y: 5; }
+    .chess .symbol-grid > *[data-order="out2-6"] { --x: 9.5; --y: 6; }
+    .chess .symbol-grid > *[data-order="out2-7"] { --x: 9.5; --y: 7; }
+    .chess .symbol-grid > *[data-order="out2-8"] { --x: 9.5; --y: 8; }
+    .chess .symbol-grid > *[data-order="out2-9"] { --x: 10.5; --y: 1; }
+    .chess .symbol-grid > *[data-order="out2-10"] { --x: 10.5; --y: 2; }
+    .chess .symbol-grid > *[data-order="out2-11"] { --x: 10.5; --y: 3; }
+    .chess .symbol-grid > *[data-order="out2-12"] { --x: 10.5; --y: 4; }
+    .chess .symbol-grid > *[data-order="out2-13"] { --x: 10.5; --y: 5; }
+    .chess .symbol-grid > *[data-order="out2-14"] { --x: 10.5; --y: 6; }
+    .chess .symbol-grid > *[data-order="out2-15"] { --x: 10.5; --y: 7; }
+    .chess .symbol-grid > *[data-order="out2-16"] { --x: 10.5; --y: 8; }
+}
 
 
 /* 디버그용 번호 표시  */
