@@ -39,14 +39,24 @@
     <link rel="stylesheet" href="chess.css">
     <script src="Chess.js"></script>
     <script>
+        let chessboard = null
         window.addEventListener('load',(evnet) => {
-            const chessboard = new Chess(document.querySelector('#chessboard'))
+            chessboard = new Chess(document.querySelector('#chessboard'))
         })
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="position-absolute top-0 z-3 pe-none">UI boardgame - chess</h1>
+    <div>
+        <div class="position-absolute top-0 z-3 start-0 end-0 ">
+            <div class="container d-flex gap-3 align-items-center justify-content-between">
+                <h1>
+                    <span class="pe-none">chess</span>
+                </h1>
+                <button class="btn btn-primary" type="button" onclick="chessboard.reset()">재배치</button>
+
+            </div>
+        </div>
+        
         <div class="position-absolute top-0 start-0 w-100 h-100" style="display: flex; justify-content: center; align-items: center;">
             <div style="flex:1 1 auto">
                 <div class="boardgame chess mx-auto" id="chessboard" style=" min-width: 300px; font-size: 14px;">
@@ -71,30 +81,14 @@
                                 <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                             </div>
                             <div class="grid symbol-grid">
-                                <div class="symbol" data-symbol="bl" data-order="59"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="bl" data-order="62"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="kl" data-order="61"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="nl" data-order="58"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="nl" data-order="63"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="49"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="50"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="51"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="52"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="53"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="54"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="55"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="pl" data-order="56"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="ql" data-order="60"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="rl" data-order="57"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="rl" data-order="64"><div class="symbol-content" ></div></div>
-    
-    
-    
+                                <div class="symbol" data-symbol="rd" data-order="1"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="nd" data-order="2"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="bd" data-order="3"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="bd" data-order="6"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="kd" data-order="4"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="nd" data-order="2"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="qd" data-order="5"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="nd" data-order="7"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="rd" data-order="8"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="pd" data-order="9"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="pd" data-order="10"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="pd" data-order="11"><div class="symbol-content" ></div></div>
@@ -103,9 +97,23 @@
                                 <div class="symbol" data-symbol="pd" data-order="14"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="pd" data-order="15"><div class="symbol-content" ></div></div>
                                 <div class="symbol" data-symbol="pd" data-order="16"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="qd" data-order="5"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="rd" data-order="1"><div class="symbol-content" ></div></div>
-                                <div class="symbol" data-symbol="rd" data-order="8"><div class="symbol-content" ></div></div>
+
+                                <div class="symbol" data-symbol="pl" data-order="49"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="50"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="51"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="52"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="53"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="54"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="55"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="pl" data-order="56"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="rl" data-order="57"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="nl" data-order="58"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="bl" data-order="59"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="ql" data-order="60"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="kl" data-order="61"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="bl" data-order="62"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="nl" data-order="63"><div class="symbol-content" ></div></div>
+                                <div class="symbol" data-symbol="rl" data-order="64"><div class="symbol-content" ></div></div>
                             </div>
                         </div>
                         <div class="numbering numbering-right">

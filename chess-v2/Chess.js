@@ -58,4 +58,11 @@ class Chess{
         symbol.classList.add('active');
         this.board.classList.add('active-symbol')
     }
+
+    reset(){
+        const orders = ["1","2","3","6","4","5","7","8","9","10","11","12","13","14","15","16","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64"]
+        this.symbols.forEach((symbol,idx) => {
+            symbol.dataset.order = orders[idx];
+        });
+    }
 }
