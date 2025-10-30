@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+
+.boardgame.chess{
+    --board-color-wihte:#eee;
+    --board-color-black:#abc;
+
+    aspect-ratio: 1/1;
+}
+
+.chess .chess-body{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-rows: 5% 90% 5%;
+}
+.chess .chess-body .grid-area{
+    position: relative;
+}
+.chess .chess-body .grid{
+    width:100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.chess .chess-body .grid > div{
+
+}
+
+
+/* square-grid */
+.chess .chess-body .square-grid > div{
+    background-color: var(--board-color-black);
+}
+.chess .chess-body .square-grid > div:where(:nth-child(16n+1),:nth-child(16n+3),:nth-child(16n+5),:nth-child(16n+7),:nth-child(16n+10),:nth-child(16n+12),:nth-child(16n+14),:nth-child(16n+16)){
+    background-color: var(--board-color-wihte);
+}
+
+
+/* symbol-grid */
+.chess .chess-body .symbol-grid{
+    position: absolute;
+    inset: 0;
+}
+
+/* lettering */
+.chess .chess-body .lettering{
+    width:100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+/* numbering */
+.chess .chess-body .numbering{
+    width:100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+}
+.chess .chess-body :where( .lettering, .numbering) > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+/* chess symbols */
+/* By Cburnett - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=1499803 */
+.chess .symbol{
+    height: 1em;
+    width: 1em;
+}
+.chess .symbol-content{
+    width: 100%;
+    height: 100%;
+    --bg-img:none;
+    background: var(--bg-img) no-repeat center center;
+    background-size: contain;
+}
+.chess .symbol-content[data-symbol="bd"]{ --bg-img:url(symbols/Chess_bdt45.svg);}
+.chess .symbol-content[data-symbol="bl"]{ --bg-img:url(symbols/Chess_blt45.svg);}
+.chess .symbol-content[data-symbol="kd"]{ --bg-img:url(symbols/Chess_kdt45.svg);}
+.chess .symbol-content[data-symbol="kl"]{ --bg-img:url(symbols/Chess_klt45.svg);}
+.chess .symbol-content[data-symbol="nd"]{ --bg-img:url(symbols/Chess_ndt45.svg);}
+.chess .symbol-content[data-symbol="nl"]{ --bg-img:url(symbols/Chess_nlt45.svg);}
+.chess .symbol-content[data-symbol="pd"]{ --bg-img:url(symbols/Chess_pdt45.svg);}
+.chess .symbol-content[data-symbol="pl"]{ --bg-img:url(symbols/Chess_plt45.svg);}
+.chess .symbol-content[data-symbol="qd"]{ --bg-img:url(symbols/Chess_qdt45.svg);}
+.chess .symbol-content[data-symbol="ql"]{ --bg-img:url(symbols/Chess_qlt45.svg);}
+.chess .symbol-content[data-symbol="rd"]{ --bg-img:url(symbols/Chess_rdt45.svg);}
+.chess .symbol-content[data-symbol="rl"]{ --bg-img:url(symbols/Chess_rlt45.svg);}
+
+
+/* 위치 잡기 */
+.chess .symbol-grid .symbol{
+    width:100%;height:100%;
+    grid-row:1;
+    grid-column:1;
+    --x: 1; --y: 1;
+
+    transform: translate(calc( (var(--y) - 1)* 100% ),calc( (var(--x) - 1)* 100%) );
+}
+
+/* 클릭 제어 */
+.chess .symbol-grid{
+    pointer-events: none;
+}
+.chess .symbol-grid .symbol{
+    pointer-events: all;
+}
+
+/* active 애니메이션 */
+.chess .symbol.active{
+    animation: symbol-dropshadow 1s linear 0s infinite ;
+}
+@keyframes symbol-dropshadow {
+    0%{filter:drop-shadow(0px 0px 0px #f93)}
+    50%{filter:drop-shadow(0px 0px 20px #f93)}
+    100%{filter:drop-shadow(0px 0px 0px #f93)}
+}
+
+/* 위치 좌표 */
+.chess .symbol-grid > *{ --x: 1; --y: 1; }
+.chess .symbol-grid > *[data-order="-10"] { --x: 0; --y: 0; }
+.chess .symbol-grid > *[data-order="-20"] { --x: 9; --y: 9; }
+.chess .symbol-grid > *[data-order="1"] { --x: 1; --y: 1; }
+.chess .symbol-grid > *[data-order="2"] { --x: 1; --y: 2; }
+.chess .symbol-grid > *[data-order="3"] { --x: 1; --y: 3; }
+.chess .symbol-grid > *[data-order="4"] { --x: 1; --y: 4; }
+.chess .symbol-grid > *[data-order="5"] { --x: 1; --y: 5; }
+.chess .symbol-grid > *[data-order="6"] { --x: 1; --y: 6; }
+.chess .symbol-grid > *[data-order="7"] { --x: 1; --y: 7; }
+.chess .symbol-grid > *[data-order="8"] { --x: 1; --y: 8; }
+
+.chess .symbol-grid > *[data-order="9"] { --x: 2; --y: 1; }
+.chess .symbol-grid > *[data-order="10"] { --x: 2; --y: 2; }
+.chess .symbol-grid > *[data-order="11"] { --x: 2; --y: 3; }
+.chess .symbol-grid > *[data-order="12"] { --x: 2; --y: 4; }
+.chess .symbol-grid > *[data-order="13"] { --x: 2; --y: 5; }
+.chess .symbol-grid > *[data-order="14"] { --x: 2; --y: 6; }
+.chess .symbol-grid > *[data-order="15"] { --x: 2; --y: 7; }
+.chess .symbol-grid > *[data-order="16"] { --x: 2; --y: 8; }
+
+.chess .symbol-grid > *[data-order="17"] { --x: 3; --y: 1; }
+.chess .symbol-grid > *[data-order="18"] { --x: 3; --y: 2; }
+.chess .symbol-grid > *[data-order="19"] { --x: 3; --y: 3; }
+.chess .symbol-grid > *[data-order="20"] { --x: 3; --y: 4; }
+.chess .symbol-grid > *[data-order="21"] { --x: 3; --y: 5; }
+.chess .symbol-grid > *[data-order="22"] { --x: 3; --y: 6; }
+.chess .symbol-grid > *[data-order="23"] { --x: 3; --y: 7; }
+.chess .symbol-grid > *[data-order="24"] { --x: 3; --y: 8; }
+
+.chess .symbol-grid > *[data-order="25"] { --x: 4; --y: 1; }
+.chess .symbol-grid > *[data-order="26"] { --x: 4; --y: 2; }
+.chess .symbol-grid > *[data-order="27"] { --x: 4; --y: 3; }
+.chess .symbol-grid > *[data-order="28"] { --x: 4; --y: 4; }
+.chess .symbol-grid > *[data-order="29"] { --x: 4; --y: 5; }
+.chess .symbol-grid > *[data-order="30"] { --x: 4; --y: 6; }
+.chess .symbol-grid > *[data-order="31"] { --x: 4; --y: 7; }
+.chess .symbol-grid > *[data-order="32"] { --x: 4; --y: 8; }
+
+.chess .symbol-grid > *[data-order="33"] { --x: 5; --y: 1; }
+.chess .symbol-grid > *[data-order="34"] { --x: 5; --y: 2; }
+.chess .symbol-grid > *[data-order="35"] { --x: 5; --y: 3; }
+.chess .symbol-grid > *[data-order="36"] { --x: 5; --y: 4; }
+.chess .symbol-grid > *[data-order="37"] { --x: 5; --y: 5; }
+.chess .symbol-grid > *[data-order="38"] { --x: 5; --y: 6; }
+.chess .symbol-grid > *[data-order="39"] { --x: 5; --y: 7; }
+.chess .symbol-grid > *[data-order="40"] { --x: 5; --y: 8; }
+
+.chess .symbol-grid > *[data-order="41"] { --x: 6; --y: 1; }
+.chess .symbol-grid > *[data-order="42"] { --x: 6; --y: 2; }
+.chess .symbol-grid > *[data-order="43"] { --x: 6; --y: 3; }
+.chess .symbol-grid > *[data-order="44"] { --x: 6; --y: 4; }
+.chess .symbol-grid > *[data-order="45"] { --x: 6; --y: 5; }
+.chess .symbol-grid > *[data-order="46"] { --x: 6; --y: 6; }
+.chess .symbol-grid > *[data-order="47"] { --x: 6; --y: 7; }
+.chess .symbol-grid > *[data-order="48"] { --x: 6; --y: 8; }
+
+.chess .symbol-grid > *[data-order="49"] { --x: 7; --y: 1; }
+.chess .symbol-grid > *[data-order="50"] { --x: 7; --y: 2; }
+.chess .symbol-grid > *[data-order="51"] { --x: 7; --y: 3; }
+.chess .symbol-grid > *[data-order="52"] { --x: 7; --y: 4; }
+.chess .symbol-grid > *[data-order="53"] { --x: 7; --y: 5; }
+.chess .symbol-grid > *[data-order="54"] { --x: 7; --y: 6; }
+.chess .symbol-grid > *[data-order="55"] { --x: 7; --y: 7; }
+.chess .symbol-grid > *[data-order="56"] { --x: 7; --y: 8; }
+
+.chess .symbol-grid > *[data-order="57"] { --x: 8; --y: 1; }
+.chess .symbol-grid > *[data-order="58"] { --x: 8; --y: 2; }
+.chess .symbol-grid > *[data-order="59"] { --x: 8; --y: 3; }
+.chess .symbol-grid > *[data-order="60"] { --x: 8; --y: 4; }
+.chess .symbol-grid > *[data-order="61"] { --x: 8; --y: 5; }
+.chess .symbol-grid > *[data-order="62"] { --x: 8; --y: 6; }
+.chess .symbol-grid > *[data-order="63"] { --x: 8; --y: 7; }
+.chess .symbol-grid > *[data-order="64"] { --x: 8; --y: 8; }
+
+
+
+/* 디버그용 번호 표시  */
+.chess .numbered > div::before{
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    font-size: 0.8em;
+}
+.chess .numbered > div:nth-child(1)::before { content: "1"; }
+.chess .numbered > div:nth-child(2)::before { content: "2"; }
+.chess .numbered > div:nth-child(3)::before { content: "3"; }
+.chess .numbered > div:nth-child(4)::before { content: "4"; }
+.chess .numbered > div:nth-child(5)::before { content: "5"; }
+.chess .numbered > div:nth-child(6)::before { content: "6"; }
+.chess .numbered > div:nth-child(7)::before { content: "7"; }
+.chess .numbered > div:nth-child(8)::before { content: "8"; }
+.chess .numbered > div:nth-child(9)::before { content: "9"; }
+.chess .numbered > div:nth-child(10)::before { content: "10"; }
+.chess .numbered > div:nth-child(11)::before { content: "11"; }
+.chess .numbered > div:nth-child(12)::before { content: "12"; }
+.chess .numbered > div:nth-child(13)::before { content: "13"; }
+.chess .numbered > div:nth-child(14)::before { content: "14"; }
+.chess .numbered > div:nth-child(15)::before { content: "15"; }
+.chess .numbered > div:nth-child(16)::before { content: "16"; }
+.chess .numbered > div:nth-child(17)::before { content: "17"; }
+.chess .numbered > div:nth-child(18)::before { content: "18"; }
+.chess .numbered > div:nth-child(19)::before { content: "19"; }
+.chess .numbered > div:nth-child(20)::before { content: "20"; }
+.chess .numbered > div:nth-child(21)::before { content: "21"; }
+.chess .numbered > div:nth-child(22)::before { content: "22"; }
+.chess .numbered > div:nth-child(23)::before { content: "23"; }
+.chess .numbered > div:nth-child(24)::before { content: "24"; }
+.chess .numbered > div:nth-child(25)::before { content: "25"; }
+.chess .numbered > div:nth-child(26)::before { content: "26"; }
+.chess .numbered > div:nth-child(27)::before { content: "27"; }
+.chess .numbered > div:nth-child(28)::before { content: "28"; }
+.chess .numbered > div:nth-child(29)::before { content: "29"; }
+.chess .numbered > div:nth-child(30)::before { content: "30"; }
+.chess .numbered > div:nth-child(31)::before { content: "31"; }
+.chess .numbered > div:nth-child(32)::before { content: "32"; }
+.chess .numbered > div:nth-child(33)::before { content: "33"; }
+.chess .numbered > div:nth-child(34)::before { content: "34"; }
+.chess .numbered > div:nth-child(35)::before { content: "35"; }
+.chess .numbered > div:nth-child(36)::before { content: "36"; }
+.chess .numbered > div:nth-child(37)::before { content: "37"; }
+.chess .numbered > div:nth-child(38)::before { content: "38"; }
+.chess .numbered > div:nth-child(39)::before { content: "39"; }
+.chess .numbered > div:nth-child(40)::before { content: "40"; }
+.chess .numbered > div:nth-child(41)::before { content: "41"; }
+.chess .numbered > div:nth-child(42)::before { content: "42"; }
+.chess .numbered > div:nth-child(43)::before { content: "43"; }
+.chess .numbered > div:nth-child(44)::before { content: "44"; }
+.chess .numbered > div:nth-child(45)::before { content: "45"; }
+.chess .numbered > div:nth-child(46)::before { content: "46"; }
+.chess .numbered > div:nth-child(47)::before { content: "47"; }
+.chess .numbered > div:nth-child(48)::before { content: "48"; }
+.chess .numbered > div:nth-child(49)::before { content: "49"; }
+.chess .numbered > div:nth-child(50)::before { content: "50"; }
+.chess .numbered > div:nth-child(51)::before { content: "51"; }
+.chess .numbered > div:nth-child(52)::before { content: "52"; }
+.chess .numbered > div:nth-child(53)::before { content: "53"; }
+.chess .numbered > div:nth-child(54)::before { content: "54"; }
+.chess .numbered > div:nth-child(55)::before { content: "55"; }
+.chess .numbered > div:nth-child(56)::before { content: "56"; }
+.chess .numbered > div:nth-child(57)::before { content: "57"; }
+.chess .numbered > div:nth-child(58)::before { content: "58"; }
+.chess .numbered > div:nth-child(59)::before { content: "59"; }
+.chess .numbered > div:nth-child(60)::before { content: "60"; }
+.chess .numbered > div:nth-child(61)::before { content: "61"; }
+.chess .numbered > div:nth-child(62)::before { content: "62"; }
+.chess .numbered > div:nth-child(63)::before { content: "63"; }
+.chess .numbered > div:nth-child(64)::before { content: "64"; }

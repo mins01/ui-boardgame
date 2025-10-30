@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko" >
+<head>
+    <title>chess</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://www.mins01.com/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/ForGoogle.js"></script>
+    <!-- google analytics -->
+    <script>if(window.ForGoogle){ ForGoogle.analytics() }else{ console.log("failure : ForGoogle.analytics()");}</script>
+
+
+    <!-- jquery 관련 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script> -->
+
+    <!-- 부트스트랩 5.3.x -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+
+    <!-- vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- meta og -->
+
+    <meta property="og:title" content="chess">
+    <meta property="og:description" content="chess">
+    <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
+    <meta property="og:image:width" content="190">
+    <meta property="og:image:height" content="70" />
+    <meta property="og:site_name" content="chess" />
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="chess.css">
+    <script src="Chess.js"></script>
+    <script>
+        window.addEventListener('load',(evnet) => {
+            const chessboard = new Chess(document.querySelector('#chessboard'))
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>UI boardgame - chess</h1>
+        <div>
+            <h2>Chess Symbols</h2>
+            <ul class="list-group list-group-numbered chess">
+                <li class="list-group-item">white(stroked) :
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="bl"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="kl"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="nl"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="pl"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="ql"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="rl"></div></div></div>
+                </li>
+                <li class="list-group-item">black(filled) : 
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="bd"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="kd"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="nd"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="pd"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="qd"></div></div></div>
+                    <div class="d-inline-block"><div class="symbol"><div class="symbol-content" data-symbol="rd"></div></div></div>
+                </li>
+            </ul>
+            
+            
+            
+        </div>
+        <div>
+            <div class="boardgame chess" id="chessboard" style="max-width: 400px; font-size: 14px;">
+                <div class="chess-body">
+                    <div></div>
+                    <div class="lettering lettering-top">
+                        <div>a</div><div>b</div><div>c</div><div>d</div><div>e</div><div>f</div><div>g</div><div>h</div>
+                    </div>
+                    <div></div>
+                    <div class="numbering lettering-left">
+                        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
+                    </div>
+                    <div class="grid-area">
+                        <div class="grid square-grid numbered">
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                        </div>
+                        <div class="grid symbol-grid">
+                            
+                            <div class="symbol" data-order="59"><div class="symbol-content" data-symbol="bl"></div></div>
+                            <div class="symbol" data-order="62"><div class="symbol-content" data-symbol="bl"></div></div>
+                            <div class="symbol" data-order="61"><div class="symbol-content" data-symbol="kl"></div></div>
+                            <div class="symbol" data-order="58"><div class="symbol-content" data-symbol="nl"></div></div>
+                            <div class="symbol" data-order="63"><div class="symbol-content" data-symbol="nl"></div></div>
+                            <div class="symbol" data-order="49"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="50"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="51"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="52"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="53"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="54"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="55"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="56"><div class="symbol-content" data-symbol="pl"></div></div>
+                            <div class="symbol" data-order="60"><div class="symbol-content" data-symbol="ql"></div></div>
+                            <div class="symbol" data-order="57"><div class="symbol-content" data-symbol="rl"></div></div>
+                            <div class="symbol" data-order="64"><div class="symbol-content" data-symbol="rl"></div></div>
+
+
+
+                            <div class="symbol" data-order="3"><div class="symbol-content" data-symbol="bd"></div></div>
+                            <div class="symbol" data-order="6"><div class="symbol-content" data-symbol="bd"></div></div>
+                            <div class="symbol" data-order="4"><div class="symbol-content" data-symbol="kd"></div></div>
+                            <div class="symbol" data-order="2"><div class="symbol-content" data-symbol="nd"></div></div>
+                            <div class="symbol" data-order="7"><div class="symbol-content" data-symbol="nd"></div></div>
+                            <div class="symbol" data-order="9"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="10"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="11"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="12"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="13"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="14"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="15"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="16"><div class="symbol-content" data-symbol="pd"></div></div>
+                            <div class="symbol" data-order="5"><div class="symbol-content" data-symbol="qd"></div></div>
+                            <div class="symbol" data-order="1"><div class="symbol-content" data-symbol="rd"></div></div>
+                            <div class="symbol" data-order="8"><div class="symbol-content" data-symbol="rd"></div></div>
+
+                        </div>
+                    </div>
+                    <div class="numbering lettering-right">
+                        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
+                    </div>
+                    <div></div>
+                    <div class="lettering lettering-bottom">
+                        <div>a</div><div>b</div><div>c</div><div>d</div><div>e</div><div>f</div><div>g</div><div>h</div>
+                    </div>
+                    <div></div>
+
+                </div>
+                <!-- 
+                <div class="chess-board"></div>
+                <div class="chess-background"></div> -->
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
