@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko" >
+<head>
+    <title>baduk</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://www.mins01.com/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/ForGoogle.js"></script>
+    <!-- google analytics -->
+    <script>if(window.ForGoogle){ ForGoogle.analytics() }else{ console.log("failure : ForGoogle.analytics()");}</script>
+
+
+    <!-- jquery 관련 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script> -->
+
+    <!-- 부트스트랩 5.3.x -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+
+    <!-- vue.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- meta og -->
+
+    <meta property="og:title" content="baduk">
+    <meta property="og:description" content="baduk">
+    <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
+    <meta property="og:image:width" content="190">
+    <meta property="og:image:height" content="70" />
+    <meta property="og:site_name" content="baduk" />
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="baduk.css">
+    <script>
+        let chessboard = null
+        window.addEventListener('load',(evnet) => {
+            document.querySelector('.grid-cross').addEventListener('click',(event)=>{
+                // console.log(event);
+                const target = event.target
+                if(target.tagName == 'BUTTON'){
+                    target.dataset.color = document.querySelector('#badukboard').dataset.color 
+                    
+                }
+                
+            })
+        })
+        function selectColor(c){
+            document.querySelector('#badukboard').dataset.color=c;
+        }
+        function clearAll(){
+            document.querySelectorAll('.grid-cross [data-color]').forEach((el)=>{el.dataset.color=""})
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div class="position-absolute top-0 z-3 start-0 end-0 pe-none ">
+            <div class="container d-flex gap-3 align-items-center justify-content-between">
+                <h1 class="pe-none">
+                    <span class="pe-none">baduk</span>
+                </h1>
+            </div>
+        </div>
+        
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="display: flex; justify-content: center; align-items: center;">
+            <div style="flex:1 1 auto">
+                <div class="boardgame baduk mx-auto" id="badukboard" style=" min-width: 300px; font-size: 14px;" data-color="b">
+                    <div class="baduk-body" style="padding:20px">
+                        <div class="board-grids">
+                            <div class="grid-squares-wrap">
+                                <div class="grid grid-squares">
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                                <div class="grid grid-dots">
+                                    <div class="grid-dot" data-dot="1"></div>
+                                    <div class="grid-dot" data-dot="2"></div>
+                                    <div class="grid-dot" data-dot="3"></div>
+                                    <div class="grid-dot" data-dot="4"></div>
+                                    <div class="grid-dot" data-dot="5"></div>
+                                    <div class="grid-dot" data-dot="6"></div>
+                                    <div class="grid-dot" data-dot="7"></div>
+                                    <div class="grid-dot" data-dot="8"></div>
+                                    <div class="grid-dot" data-dot="9"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cross">
+                                <button type="button" data-color="b"></button>
+                                <button type="button" data-color="w"></button>
+                                <button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button><button type="button" data-color=""></button>
+                                <button type="button" data-color=""></button>
+                            </div>
+                            <div class="grid grid-switch grid-switch-1">
+                                <button type="button" class="stone" data-color="b" onclick="selectColor(this.dataset.color)"></button>
+                                <button type="button" class="stone" data-color="w" onclick="selectColor(this.dataset.color)"></button>
+                                <button type="button" class="stone" data-color="" onclick="selectColor(this.dataset.color)"></button>
+                                <button type="button" class="clear-stone" data-color="" onclick="clearAll()">R</button>
+
+                            </div>
+                            <div class="grid grid-switch grid-switch-2">
+                                <button type="button" class="stone" data-color="b" onclick="selectColor(this.dataset.color)"></button>
+                                <button type="button" class="stone" data-color="w" onclick="selectColor(this.dataset.color)"></button>
+                                <button type="button" class="stone" data-color="" onclick="selectColor(this.dataset.color)"></button>
+                                <button type="button" class="clear-stone" data-color="" onclick="clearAll()">R</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
